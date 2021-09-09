@@ -12,6 +12,9 @@ interface TopMenu {
 })
 export class AppComponent {
   title = 'pdd-project';
+
+  selectedIndex = -1;
+
   menus: TopMenu[] = [
     { title: '热门', link: '' },
     { title: '男装', link: '' },
@@ -31,4 +34,12 @@ export class AppComponent {
     { title: '美妆', link: '' },
     { title: '家具', link: '' },
   ];
+
+  titleByMenu(index, menu) {
+    return menu.title;
+  }
+
+  handleSelection(index: number) {
+    this.selectedIndex = index;
+  }
 }
