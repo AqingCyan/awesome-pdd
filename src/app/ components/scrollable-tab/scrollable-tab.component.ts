@@ -5,7 +5,10 @@ import {
   Output,
   OnInit,
   OnChanges,
+  AfterContentInit,
   SimpleChanges,
+  AfterContentChecked,
+  AfterViewInit,
 } from '@angular/core';
 
 export interface TopMenu {
@@ -18,7 +21,14 @@ export interface TopMenu {
   templateUrl: './scrollable-tab.component.html',
   styleUrls: ['./scrollable-tab.component.css'],
 })
-export class ScrollableTabComponent implements OnChanges, OnInit {
+export class ScrollableTabComponent
+  implements
+    OnChanges,
+    OnInit,
+    AfterContentInit,
+    AfterContentChecked,
+    AfterViewInit
+{
   selectedIndex = -1;
   @Input() menus: TopMenu[] = [];
   @Input() backgroundColor: string;
@@ -26,11 +36,6 @@ export class ScrollableTabComponent implements OnChanges, OnInit {
   @Input() titleColor = 'blue';
   @Input() indicatorColor = 'brown';
   @Output() tabSelected = new EventEmitter();
-
-  handleSelection(index: number) {
-    this.selectedIndex = index;
-    this.tabSelected.emit(this.menus[this.selectedIndex]);
-  }
 
   constructor() {
     console.log('组件构造调用');
@@ -42,5 +47,22 @@ export class ScrollableTabComponent implements OnChanges, OnInit {
 
   ngOnInit() {
     console.log('组件初始化');
+  }
+
+  ngAfterContentInit() {
+    console.log('组件内容初始化');
+  }
+
+  ngAfterContentChecked() {
+    console.log('组件内容脏值检测');
+  }
+
+  ngAfterViewInit() {
+    console.log('组件视图初始化');
+  }
+
+  handleSelection(index: number) {
+    this.selectedIndex = index;
+    this.tabSelected.emit(this.menus[this.selectedIndex]);
   }
 }
