@@ -16,6 +16,10 @@ export class ScrollableTabComponent implements OnInit {
   selectedIndex = -1;
 
   @Input() menus: TopMenu[] = [];
+  @Input() backgroundColor: string;
+  @Input() titleActiveColor = 'yellow';
+  @Input() titleColor = 'blue';
+  @Input() indicatorColor = 'brown';
 
   @Output() tabSelected = new EventEmitter();
 
